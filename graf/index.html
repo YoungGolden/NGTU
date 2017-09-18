@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="nojs html css_verticalspacer" lang="ru-RU">
+ <head>
+
+  <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+  <meta name="generator" content="2017.0.2.363"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <script type="text/javascript">
+   // Update the 'nojs'/'js' class on the html node
+document.documentElement.className = document.documentElement.className.replace(/\bnojs\b/g, 'js');
+
+// Check that all required assets are uploaded and up-to-date
+if(typeof Muse == "undefined") window.Muse = {}; window.Muse.assets = {"required":["museutils.js", "museconfig.js", "webpro.js", "musewpslideshow.js", "jquery.museoverlay.js", "touchswipe.js", "jquery.watch.js", "require.js", "index.css"], "outOfDate":[]};
+</script>
+  
+  <title>Домашняя</title>
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/site_global.css?crc=443350757"/>
+  <link rel="stylesheet" type="text/css" href="css/index.css?crc=4189416378" id="pagesheet"/>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   var __adobewebfontsappname__ = "muse";
+</script>
+  <!-- JS includes -->
+  <script src="https://webfonts.creativecloud.com/open-sans:n3:all.js" type="text/javascript"></script>
+
+  <style>
+      .axis path, .axis line {
+          fill: none;
+          stroke: #333;
+      }
+      .axis .grid-line {
+          stroke: #A73E3E;
+          stroke-opacity: 0.2;
+      }
+      .axis text {
+          font: 14px Open Sans;
+      }
+      .dot {
+          stroke: #D11616;
+          fill: #D11616;
+      }
+      </style>
+      
+   </head>
+ <body>
+
+  <div class="clearfix borderbox" id="page"><!-- group -->
+   <div class="PamphletWidget clearfix grpelem" id="pamphletu154"><!-- none box -->
+    <div class="ThumbGroup clearfix grpelem" id="u155"><!-- none box -->
+     <div class="popup_anchor" id="u156popup">
+      <div class="Thumb popup_element rounded-corners" id="u156"><!-- simple frame --></div>
+     </div>
+     <div class="popup_anchor" id="u158popup">
+      <div class="Thumb popup_element rounded-corners" id="u158"><!-- simple frame --></div>
+     </div>
+     <div class="popup_anchor" id="u157popup">
+      <div class="Thumb popup_element rounded-corners" id="u157"><!-- simple frame --></div>
+     </div>
+    </div>
+    <div class="popup_anchor" id="u165popup">
+     <div class="ContainerGroup clearfix" id="u165"><!-- stack box -->
+      <div class="Container clearfix grpelem" id="u168"><!-- group -->
+       <div class="grpelem" id="u199"><!-- content -->
+        <div class="fluid_height_spacer"></div>
+       </div>
+      </div>
+      <div class="Container invi clearfix grpelem" id="u166"><!-- group -->
+       <div class="grpelem" id="u202"><!-- content -->
+        <div class="fluid_height_spacer"> 
+        
+            <script type="text/javascript">
+              var height = 500, 
+                  width = 500, 
+                  margin=30,
+                  rawData = [
+                      {x: 0.2, y: 2.2}, {x: 20, y: 74},{x: 30, y: 63},
+                      {x: 40, y: 56}, {x: 50, y: 24}, {x: 60, y: 26},
+                      {x: 70, y: 19}, {x: 80, y: 42}, {x: 90, y: 88}
+                  ],
+                  data=[];
+                  
+              var svg = d3.select("body").append("svg")
+                      .attr("class", "axis")
+                      .attr("width", width)
+                      .attr("height", height);
+                  
+              // длина оси X= ширина контейнера svg - отступ слева и справа
+              var xAxisLength = width - 2 * margin;     
+                  
+              // длина оси Y = высота контейнера svg - отступ сверху и снизу
+              var yAxisLength = height - 2 * margin;
+                  
+              // функция интерполяции значений на ось Х  
+              var scaleX = d3.scale.linear()
+                          .domain([0, 100])
+                          .range([0, xAxisLength]);
+                              
+              // функция интерполяции значений на ось Y
+              var scaleY = d3.scale.linear()
+                          .domain([100, 0])
+                          .range([0, yAxisLength]);
+                  
+              for(i=0; i<rawData.length; i++)
+                  data.push({x: scaleX(rawData[i].x)+margin, y: scaleY(rawData[i].y) + margin});
+                              
+              // создаем ось X   
+              var xAxis = d3.svg.axis()
+                              .scale(scaleX)
+                              .orient("bottom");
+              // создаем ось Y             
+              var yAxis = d3.svg.axis()
+                              .scale(scaleY)
+                              .orient("left");
+                              
+              // отрисовка оси Х             
+              svg.append("g")       
+                      .attr("class", "x-axis")
+                      .attr("transform",  // сдвиг оси вниз и вправо
+                          "translate(" + margin + "," + (height - margin) + ")")
+                  .call(xAxis);
+                  
+              // отрисовка оси Y 
+              svg.append("g")       
+                  .attr("class", "y-axis")
+                  .attr("transform", // сдвиг оси вниз и вправо на margin
+                          "translate(" + margin + "," + margin + ")")
+                  .call(yAxis);
+                  
+              // создаем набор вертикальных линий для сетки   
+              d3.selectAll("g.x-axis g.tick")
+                  .append("line") // добавляем линию
+                  .classed("grid-line", true) // добавляем класс
+                  .attr("x1", 0)
+                  .attr("y1", 0)
+                  .attr("x2", 0)
+                  .attr("y2", - (height - 2 * margin));
+                      
+              // рисуем горизонтальные линии 
+              d3.selectAll("g.y-axis g.tick")
+                  .append("line")
+                  .classed("grid-line", true)
+                  .attr("x1", 0)
+                  .attr("y1", 0)
+                  .attr("x2", yAxisLength)
+                  .attr("y2", 0);
+              
+              // функция, создающая по массиву точек линии
+              var line = d3.svg.line()
+                          .x(function(d){return d.x;})
+                          .y(function(d){return d.y;});
+              
+              var g = svg.append("g");
+              g.append("path")
+                  .attr("d", line(data))
+                  .style("stroke", "steelblue")
+                  .style("stroke-width", 2);
+              
+              // добавляем заголовок
+              g.append("text")
+                  .attr("x", (width / 2))
+                  .attr("y", margin - 10 )
+                  .attr("text-anchor", "middle")
+                  .style("font-size", "22px")
+                  .text("График значений");
+                  
+              g.append("text")
+                  .attr("x", margin + 28)
+                  .attr("y", margin - 11)
+                  .attr("text-anchor", "end")
+                  .style("font-size", "11px")
+                  .text("Ось Y(ММ)");
+                  
+              g.append("text")
+                  .attr("x", width - margin + 11)
+                  .attr("y", height - margin - 5)
+                  .attr("text-anchor", "end")
+                  .style("font-size", "11px")
+                  .text("Ось Х(ММ)");
+              
+              // добавляем отметки к точкам
+              svg.selectAll(".dot")
+                  .data(rawData)
+                  .enter().append("circle")
+                  .attr("class", "dot")
+                  .attr("r", 3.5)
+                  .attr("cx", function(d) { return scaleX(d.x)+margin; })
+                  .attr("cy", function(d) { return scaleY(d.y)+margin; });
+              </script>
+          
+        </div>
+       </div>
+      </div>
+      <div class="Container invi clearfix grpelem" id="u167"><!-- group -->
+       <div class="grpelem" id="u205"><!-- content -->
+        <div class="fluid_height_spacer"></div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="clearfix grpelem" id="u94-4"><!-- content -->
+    <p>Лабораторная работа</p>
+   </div>
+   <div class="verticalspacer" data-offset-top="449" data-content-above-spacer="449" data-content-below-spacer="61"></div>
+  </div>
+  <!-- Other scripts -->
+  <script type="text/javascript">
+   window.Muse.assets.check=function(d){if(!window.Muse.assets.checked){window.Muse.assets.checked=!0;var b={},c=function(a,b){if(window.getComputedStyle){var c=window.getComputedStyle(a,null);return c&&c.getPropertyValue(b)||c&&c[b]||""}if(document.documentElement.currentStyle)return(c=a.currentStyle)&&c[b]||a.style&&a.style[b]||"";return""},a=function(a){if(a.match(/^rgb/))return a=a.replace(/\s+/g,"").match(/([\d\,]+)/gi)[0].split(","),(parseInt(a[0])<<16)+(parseInt(a[1])<<8)+parseInt(a[2]);if(a.match(/^\#/))return parseInt(a.substr(1),
+16);return 0},g=function(g){for(var f=document.getElementsByTagName("link"),h=0;h<f.length;h++)if("text/css"==f[h].type){var i=(f[h].href||"").match(/\/?css\/([\w\-]+\.css)\?crc=(\d+)/);if(!i||!i[1]||!i[2])break;b[i[1]]=i[2]}f=document.createElement("div");f.className="version";f.style.cssText="display:none; width:1px; height:1px;";document.getElementsByTagName("body")[0].appendChild(f);for(h=0;h<Muse.assets.required.length;){var i=Muse.assets.required[h],l=i.match(/([\w\-\.]+)\.(\w+)$/),k=l&&l[1]?
+l[1]:null,l=l&&l[2]?l[2]:null;switch(l.toLowerCase()){case "css":k=k.replace(/\W/gi,"_").replace(/^([^a-z])/gi,"_$1");f.className+=" "+k;k=a(c(f,"color"));l=a(c(f,"backgroundColor"));k!=0||l!=0?(Muse.assets.required.splice(h,1),"undefined"!=typeof b[i]&&(k!=b[i]>>>24||l!=(b[i]&16777215))&&Muse.assets.outOfDate.push(i)):h++;f.className="version";break;case "js":h++;break;default:throw Error("Unsupported file type: "+l);}}d?d().jquery!="1.8.3"&&Muse.assets.outOfDate.push("jquery-1.8.3.min.js"):Muse.assets.required.push("jquery-1.8.3.min.js");
+f.parentNode.removeChild(f);if(Muse.assets.outOfDate.length||Muse.assets.required.length)f="Некоторые файлы на сервере могут отсутствовать или быть некорректными. Очистите кэш-память браузера и повторите попытку. Если проблему не удается устранить, свяжитесь с разработчиками сайта.",g&&Muse.assets.outOfDate.length&&(f+="\nOut of date: "+Muse.assets.outOfDate.join(",")),g&&Muse.assets.required.length&&(f+="\nMissing: "+Muse.assets.required.join(",")),alert(f)};location&&location.search&&location.search.match&&location.search.match(/muse_debug/gi)?setTimeout(function(){g(!0)},5E3):g()}};
+var muse_init=function(){require.config({baseUrl:""});require(["jquery","museutils","whatinput","webpro","musewpslideshow","jquery.museoverlay","touchswipe","jquery.watch"],function(d){var $ = d;$(document).ready(function(){try{
+window.Muse.assets.check($);/* body */
+Muse.Utils.transformMarkupToFixBrowserProblemsPreInit();/* body */
+Muse.Utils.prepHyperlinks(true);/* body */
+Muse.Utils.fullPage('#page');/* 100% height page */
+Muse.Utils.initWidget('#pamphletu154', ['#bp_infinity'], function(elem) { return new WebPro.Widget.ContentSlideShow(elem, {contentLayout_runtime:'stack',event:'click',deactivationEvent:'',autoPlay:false,displayInterval:3000,transitionStyle:'fading',transitionDuration:500,hideAllContentsFirst:false,shuffle:false,enableSwipe:true,resumeAutoplay:true,resumeAutoplayInterval:3000,playOnce:false,autoActivate_runtime:false}); });/* #pamphletu154 */
+Muse.Utils.showWidgetsWhenReady();/* body */
+Muse.Utils.transformMarkupToFixBrowserProblems();/* body */
+}catch(b){if(b&&"function"==typeof b.notify?b.notify():Muse.Assert.fail("Error calling selector function: "+b),false)throw b;}})})};
+
+</script>
+  <!-- RequireJS script -->
+  <script src="scripts/require.js?crc=4234670167" type="text/javascript" async data-main="scripts/museconfig.js?crc=4152223963" onload="if (requirejs) requirejs.onError = function(requireType, requireModule) { if (requireType && requireType.toString && requireType.toString().indexOf && 0 <= requireType.toString().indexOf('#scripterror')) window.Muse.assets.check(); }" onerror="window.Muse.assets.check();"></script>
+   </body>
+</html>

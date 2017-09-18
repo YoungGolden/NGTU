@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://d3js.org/d3.v3.min.js"> </script>
+<style>
+.axis path, .axis line {
+    fill: none;
+    stroke: #B41D1D;
+}
+.axis .grid-line {
+    stroke: #A73E3E;
+    stroke-opacity: 0.2;
+}
+.axis text {
+    font: 14px Open Sans;
+}
+.dot {
+    stroke: #D11616;
+    fill: #D11616;
+}
+.oy {
+    color: #A73E3E;
+}
+.text {
+    text-align:  center;
+   }
+}
+
+</style>
+<body bgcolor="#EBEBEB">
+<div class = "text"><p><font color = "1E1E1E" size = "5" face = "Open Sans">Лабораторная работа</font></p></div>
+
+<script type="text/javascript">
+var height = 500, 
+    width = 500, 
+    margin=30,
+    rawData = [
+    { x: 0.2, y: 16.60},
+    { x: 0.4, y: 16.60},
+    { x: 0.6, y: 16.60},
+    { x: 0.8, y: 16.60},
+    { x: 1.0, y: 16.50},
+    { x: 1.2, y: 16.50},
+    { x: 1.4, y: 16.50},
+    { x: 1.6, y: 16.50},
+    { x: 1.8, y: 16.50},
+    { x: 2.0, y: 16.50},
+    { x: 2.2, y: 16.40},
+    { x: 2.4, y: 16.40},
+    { x: 2.6, y: 16.40},
+    { x: 2.8, y: 16.40},
+    { x: 3.0, y: 16.40},
+    { x: 3.2, y: 16.40},
+    { x: 3.4, y: 16.40},
+    { x: 3.6, y: 16.30},
+    { x: 3.8, y: 16.30},
+    { x: 4.0, y: 16.30},
+    { x: 4.2, y: 16.30},
+    { x: 4.4, y: 16.30},
+    { x: 4.6, y: 16.30},
+    { x: 4.8, y: 16.30},
+    { x: 5.0, y: 16.20},
+    { x: 5.2, y: 16.20},
+    { x: 5.4, y: 16.20},
+    { x: 5.6, y: 16.20},
+    { x: 5.8, y: 16.20},
+    { x: 6.0, y: 16.10},
+    { x: 6.2, y: 16.00},
+    { x: 6.4, y: 16.00},
+    { x: 6.6, y: 15.90},
+    { x: 6.8, y: 15.90},
+    { x: 7.0, y: 15.80},
+    { x: 7.2, y: 15.70},
+    { x: 7.4, y: 15.66},
+    { x: 7.6, y: 15.55},
+    { x: 7.8, y: 15.40},
+    { x: 8.0, y: 15.20},
+    { x: 8.2, y: 15.10},
+    { x: 8.4, y: 14.70},
+    { x: 8.6, y: 14.30},
+    { x: 8.8, y: 13.80},
+    { x: 9.0, y: 13.00},
+    { x: 9.2, y: 12.20},
+    { x: 9.4, y: 11.20},
+    { x: 9.6, y: 9.30},
+    { x: 9.8, y: 7.10},
+    { x: 10.0, y: 5.80},
+    { x: 10.2, y: 4.00},
+    { x: 10.4, y: 2.40},
+    { x: 10.6, y: 1.50},
+    { x: 10.8, y: 1.20},
+    { x: 11.0, y: 1.10},
+    { x: 11.2, y: 1.00},
+    { x: 11.4, y: 0.90},
+    { x: 11.6, y: 0.85},
+    { x: 11.8, y: 0.83},
+    { x: 12.0, y: 0.80},
+    { x: 12.2, y: 0.78},
+    { x: 12.4, y: 0.75},
+    { x: 12.6, y: 0.70},
+    { x: 12.8, y: 0.70},
+    { x: 13.0, y: 0.70},
+    { x: 13.2, y: 0.68},
+    { x: 13.4, y: 0.65},
+    { x: 13.6, y: 0.65},
+    { x: 13.8, y: 0.62},
+    { x: 14.0, y: 0.60},
+    { x: 14.2, y: 0.60},
+    { x: 14.4, y: 0.60},
+    { x: 14.6, y: 0.62},
+    { x: 14.8, y: 0.65},
+    { x: 15.0, y: 0.69},
+    { x: 15.2, y: 0.72},
+    { x: 15.4, y: 0.78},
+    { x: 15.6, y: 0.81},
+    { x: 15.8, y: 0.90},
+    { x: 16.0, y: 0.92},
+    { x: 16.2, y: 1.00},
+    { x: 16.4, y: 1.10},
+    { x: 16.6, y: 1.20},
+    { x: 16.8, y: 1.30},
+    { x: 17.0, y: 1.50},
+    { x: 17.2, y: 1.70},
+    { x: 17.4, y: 2.00},
+    { x: 17.6, y: 2.30},
+    { x: 17.8, y: 2.60},
+    { x: 18.0, y: 3.10},
+    { x: 18.2, y: 3.70},
+    { x: 18.4, y: 4.30},
+    { x: 18.6, y: 5.00},
+    { x: 18.8, y: 5.90},
+    { x: 19.0, y: 7.30},
+    { x: 19.2, y: 9.50},
+    { x: 19.4, y: 10.70},
+    { x: 19.6, y: 11.60},
+    { x: 19.8, y: 12.50},
+    { x: 20.0, y: 13.50},
+    { x: 20.2, y: 14.20},
+    { x: 20.4, y: 14.80},
+    { x: 20.6, y: 15.20},
+    { x: 20.8, y: 15.50},
+    { x: 21.0, y: 15.70},
+    { x: 21.2, y: 15.80},
+    { x: 21.4, y: 15.98},  
+    { x: 21.6, y: 16.07},
+    { x: 21.8, y: 16.12},
+    { x: 22.0, y: 16.20},
+    { x: 22.2, y: 16.22},
+    { x: 22.4, y: 16.28},
+    { x: 22.6, y: 16.31},
+    { x: 22.8, y: 16.35},
+    { x: 23.0, y: 16.39},
+    { x: 23.2, y: 16.40},
+    { x: 23.4, y: 16.40},
+    { x: 23.6, y: 16.41},
+    { x: 23.8, y: 16.43},
+    { x: 24.0, y: 16.45},
+    { x: 24.2, y: 16.45},
+    { x: 24.4, y: 16.46},
+    { x: 24.6, y: 16.48},
+    { x: 24.8, y: 16.50},
+    { x: 25.0, y: 16.50},
+    { x: 25.2, y: 16.50},
+    { x: 25.4, y: 16.50},
+    { x: 25.6, y: 16.50},
+    { x: 25.8, y: 16.50},
+    { x: 26.0, y: 16.50},
+    { x: 26.2, y: 16.50},
+    { x: 26.4, y: 16.50},
+    { x: 26.6, y: 16.50},
+    { x: 26.8, y: 16.50},
+    { x: 27.0, y: 16.50},
+    { x: 27.2, y: 16.50},
+    { x: 27.4, y: 16.50},
+    { x: 27.6, y: 16.50}
+    ],
+    data=[];
+    
+var svg = d3.select("body").append("svg")
+        .attr("class", "axis")
+        .attr("width", width)
+        .attr("height", height);
+    
+// длина оси X= ширина контейнера svg - отступ слева и справа
+var xAxisLength = width - 2 * margin;     
+    
+// длина оси Y = высота контейнера svg - отступ сверху и снизу
+var yAxisLength = height - 2 * margin;
+    
+// функция интерполяции значений на ось Х  
+var scaleX = d3.scale.linear()
+            .domain([0, 30])
+            .range([0, xAxisLength]);
+                
+// функция интерполяции значений на ось Y
+var scaleY = d3.scale.linear()
+            .domain([40, 0])
+            .range([0, yAxisLength]);
+    
+for(i=0; i<rawData.length; i++)
+    data.push({x: scaleX(rawData[i].x)+margin, y: scaleY(rawData[i].y) + margin});
+                
+// создаем ось X   
+var xAxis = d3.svg.axis()
+                .scale(scaleX)
+                .orient("bottom");
+// создаем ось Y             
+var yAxis = d3.svg.axis()
+                .scale(scaleY)
+                .orient("left");
+                
+// отрисовка оси Х             
+svg.append("g")       
+        .attr("class", "x-axis")
+        .attr("transform",  // сдвиг оси вниз и вправо
+            "translate(" + margin + "," + (height - margin) + ")")
+    .call(xAxis);
+    
+// отрисовка оси Y 
+svg.append("g")       
+    .attr("class", "y-axis")
+    .attr("transform", // сдвиг оси вниз и вправо на margin
+            "translate(" + margin + "," + margin + ")")
+    .call(yAxis);
+    
+// создаем набор вертикальных линий для сетки   
+d3.selectAll("g.x-axis g.tick")
+    .append("line") // добавляем линию
+    .classed("grid-line", true) // добавляем класс
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", 0)
+    .attr("y2", - (height - 2 * margin));
+        
+// рисуем горизонтальные линии 
+d3.selectAll("g.y-axis g.tick")
+    .append("line")
+    .classed("grid-line", true)
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", yAxisLength)
+    .attr("y2", 0);
+
+// функция, создающая по массиву точек линии
+var line = d3.svg.line()
+            .x(function(d){return d.x;})
+            .y(function(d){return d.y;});
+
+var g = svg.append("g");
+g.append("path")
+    .attr("d", line(data))
+    .style("stroke", "steelblue")
+    .style("stroke-width", 2);
+
+// добавляем заголовок
+g.append("text")
+    .attr("x", (width / 2))
+    .attr("y", margin - 10 )
+    .attr("text-anchor", "middle")
+    .style("font-size", "22px")
+    .text("График значений");
+    
+g.append("text")
+    .attr("x", margin + 28)
+    .attr("y", margin - 11)
+    .attr("text-anchor", "end")
+    .style("color", "#FFFFFF")
+    .style("font-size", "11px")
+    .text("Ось Y(ММ)");
+    
+g.append("text")
+    .attr("x", width - margin + 11)
+    .attr("y", height - margin - 5)
+    .attr("text-anchor", "end")
+    .style("font-size", "11px")
+    .text("Ось Х(ММ)");
+
+// добавляем отметки к точкам
+svg.selectAll(".dot")
+    .data(rawData)
+    .enter().append("circle")
+    .attr("class", "dot")
+    .attr("r", 3.5)
+    .attr("cx", function(d) { return scaleX(d.x)+margin; })
+    .attr("cy", function(d) { return scaleY(d.y)+margin; });
+</script>
+
+<!---
+<script type="text/javascript">
+var height = 500, 
+    width = 500, 
+    margin=30,
+    rawData = [
+        {x: 0.2, y: 2.2}, {x: 20, y: 74},{x: 30, y: 63},
+        {x: 40, y: 56}, {x: 50, y: 24}, {x: 60, y: 26},
+        {x: 70, y: 19}, {x: 80, y: 42}, {x: 90, y: 88}
+    ],
+    data=[];
+ 
+var svg = d3.select("body").append("svg")
+        .attr("class", "axis")
+        .attr("width", width)
+        .attr("height", height);
+ 
+// длина оси X= ширина контейнера svg - отступ слева и справа
+var xAxisLength = width - 2 * margin;     
+  
+// длина оси Y = высота контейнера svg - отступ сверху и снизу
+var yAxisLength = height - 2 * margin;
+    
+// функция интерполяции значений на ось Х  
+var scaleX = d3.scale.linear()
+            .domain([0, 100])
+            .range([0, xAxisLength]);
+             
+// функция интерполяции значений на ось Y
+var scaleY = d3.scale.linear()
+            .domain([100, 0])
+            .range([0, yAxisLength]);
+ 
+for(i=0; i<rawData.length; i++)
+    data.push({x: scaleX(rawData[i].x)+margin, y: scaleY(rawData[i].y) + margin});
+             
+// создаем ось X   
+var xAxis = d3.svg.axis()
+             .scale(scaleX)
+             .orient("bottom");
+// создаем ось Y             
+var yAxis = d3.svg.axis()
+             .scale(scaleY)
+             .orient("left");
+              
+// отрисовка оси Х             
+svg.append("g")       
+     .attr("class", "x-axis")
+     .attr("transform",  // сдвиг оси вниз и вправо
+         "translate(" + margin + "," + (height - margin) + ")")
+    .call(xAxis);
+ 
+// отрисовка оси Y 
+svg.append("g")       
+    .attr("class", "y-axis")
+    .attr("transform", // сдвиг оси вниз и вправо на margin
+            "translate(" + margin + "," + margin + ")")
+    .call(yAxis);
+ 
+// создаем набор вертикальных линий для сетки   
+d3.selectAll("g.x-axis g.tick")
+    .append("line") // добавляем линию
+    .classed("grid-line", true) // добавляем класс
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", 0)
+    .attr("y2", - (height - 2 * margin));
+     
+// рисуем горизонтальные линии 
+d3.selectAll("g.y-axis g.tick")
+    .append("line")
+    .classed("grid-line", true)
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", yAxisLength)
+    .attr("y2", 0);
+/* 
+// функция, создающая по массиву точек линии
+var line = d3.svg.line()
+            .x(function(d){return d.x;})
+            .y(function(d){return d.y;});
+*/
+
+// Функция interpolate
+var line = d3.svg.line().interpolate("basis")
+    .x(function(d){return d.x;})
+    .y(function(d){return d.y;});
+
+var area = d3.svg.area().interpolate("basis")
+    .x(function(d) { return d.x; })
+    .y0(height - margin)
+    .y1(function(d) { return d.y; });
+
+var g = svg.append("g");
+g.append("path")
+    .attr("d", line(data))
+    .style("stroke", "steelblue")
+    .style("stroke-width", 2);
+
+// добавляем заголовок
+g.append("text")
+    .attr("x", (width / 2))
+    .attr("y", margin - 10 )
+    .attr("text-anchor", "middle")
+    .style("font-size", "22px")
+    .text("График значений");
+ 
+g.append("text")
+    .attr("x", margin + 28)
+    .attr("y", margin - 11)
+    .attr("text-anchor", "end")
+    .style("font-size", "11px")
+    .text("Ось Y(ММ)");
+ 
+g.append("text")
+    .attr("x", width - margin + 11)
+    .attr("y", height - margin - 5)
+    .attr("text-anchor", "end")
+    .style("font-size", "11px")
+    .text("Ось Х(ММ)");
+
+// добавляем отметки к точкам
+svg.selectAll(".dot")
+    .data(rawData)
+    .enter().append("circle")
+    .attr("class", "dot")
+    .attr("r", 3.5)
+    .attr("cx", function(d) { return scaleX(d.x)+margin; })
+    .attr("cy", function(d) { return scaleY(d.y)+margin; });
+</script>
+
+<script type="text/javascript">
+var height = 500, 
+    width = 500, 
+    margin=30,
+    rawData = [
+        {x: 0.2, y: 2.2}, {x: 20, y: 74},{x: 30, y: 63},
+        {x: 40, y: 56}, {x: 50, y: 24}, {x: 60, y: 26},
+        {x: 70, y: 19}, {x: 80, y: 42}, {x: 90, y: 88}
+    ],
+    data=[];
+    
+var svg = d3.select("body").append("svg")
+        .attr("class", "axis")
+        .attr("width", width)
+        .attr("height", height);
+    
+// длина оси X= ширина контейнера svg - отступ слева и справа
+var xAxisLength = width - 2 * margin;     
+    
+// длина оси Y = высота контейнера svg - отступ сверху и снизу
+var yAxisLength = height - 2 * margin;
+    
+// функция интерполяции значений на ось Х  
+var scaleX = d3.scale.linear()
+            .domain([0, 100])
+            .range([0, xAxisLength]);
+                
+// функция интерполяции значений на ось Y
+var scaleY = d3.scale.linear()
+            .domain([100, 0])
+            .range([0, yAxisLength]);
+    
+for(i=0; i<rawData.length; i++)
+    data.push({x: scaleX(rawData[i].x)+margin, y: scaleY(rawData[i].y) + margin});
+                
+// создаем ось X   
+var xAxis = d3.svg.axis()
+                .scale(scaleX)
+                .orient("bottom");
+// создаем ось Y             
+var yAxis = d3.svg.axis()
+                .scale(scaleY)
+                .orient("left");
+                
+// отрисовка оси Х             
+svg.append("g")       
+        .attr("class", "x-axis")
+        .attr("transform",  // сдвиг оси вниз и вправо
+            "translate(" + margin + "," + (height - margin) + ")")
+    .call(xAxis);
+    
+// отрисовка оси Y 
+svg.append("g")       
+    .attr("class", "y-axis")
+    .attr("transform", // сдвиг оси вниз и вправо на margin
+            "translate(" + margin + "," + margin + ")")
+    .call(yAxis);
+    
+// создаем набор вертикальных линий для сетки   
+d3.selectAll("g.x-axis g.tick")
+    .append("line") // добавляем линию
+    .classed("grid-line", true) // добавляем класс
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", 0)
+    .attr("y2", - (height - 2 * margin));
+        
+// рисуем горизонтальные линии 
+d3.selectAll("g.y-axis g.tick")
+    .append("line")
+    .classed("grid-line", true)
+    .attr("x1", 0)
+    .attr("y1", 0)
+    .attr("x2", yAxisLength)
+    .attr("y2", 0);
+/* 
+// функция, создающая по массиву точек линии
+var line = d3.svg.line()
+            .x(function(d){return d.x;})
+            .y(function(d){return d.y;});
+*/
+
+// Функция interpolate
+var line = d3.svg.line().interpolate("basis")
+    .x(function(d){return d.x;})
+    .y(function(d){return d.y;});
+
+var area = d3.svg.area().interpolate("basis")
+    .x(function(d) { return d.x; })
+    .y0(height - margin)
+    .y1(function(d) { return d.y; });
+
+var g = svg.append("g");
+g.append("path")
+    .attr("d", line(data))
+    .style("stroke", "steelblue")
+    .style("stroke-width", 2);
+
+// добавляем заголовок
+g.append("text")
+    .attr("x", (width / 2))
+    .attr("y", margin - 10 )
+    .attr("text-anchor", "middle")
+    .style("font-size", "22px")
+    .text("График значений");
+    
+g.append("text")
+    .attr("x", margin + 28)
+    .attr("y", margin - 11)
+    .attr("text-anchor", "end")
+    .style("font-size", "11px")
+    .text("Ось Y(ММ)");
+    
+g.append("text")
+    .attr("x", width - margin + 11)
+    .attr("y", height - margin - 5)
+    .attr("text-anchor", "end")
+    .style("font-size", "11px")
+    .text("Ось Х(ММ)");
+
+</script>
+-->
+</body>
+</html>

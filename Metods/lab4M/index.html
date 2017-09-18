@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Site made with Mobirise Website Builder v4.3.0, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v4.3.0, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo4.png" type="image/x-icon">
+  <meta name="description" content="">
+  <title>Home</title>
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+
+  <script src="http://d3js.org/d3.v3.min.js"> </script>
+  <style>
+  .axis path, .axis line {
+      fill: none;
+      stroke: #333;
+  }
+  .axis .grid-line {
+      stroke: #A73E3E;
+      stroke-opacity: 0.2;
+  }
+  .axis text {
+      font: 14px Open Sans;
+  }
+  .dot {
+      stroke: #D11616;
+      fill: #D11616;
+  }
+  </style>
+  
+  
+</head>
+<body>
+<section class="mbr-section content4 cid-qvolYmJNtn" id="content4-1" data-rv-view="97">
+
+    
+
+    <div class="container">
+        <div class="media-container-row">
+            <div class="title col-12 col-md-8">
+                <h2 class="align-center pb-3 mbr-fonts-style display-2">
+                    Article Title with Solid Background
+                </h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
+                    Shape your future web project with sharp design and refine coded functions.
+                </h3>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="engine"><a href="https://mobirise.co">Mobirise</a></section><section class="cid-qvolZwcFU0" id="image1-2" data-rv-view="99">
+
+    
+
+    <figure class="mbr-figure container">
+            <div class="image-block" style="width: 66%;">
+                <img src="assets/images/jumbotron.jpg" width="1400" alt="Mobirise" media-simple="true">
+                <script type="text/javascript">
+                    var height = 500, 
+                        width = 500, 
+                        margin=30,
+                        rawData = [
+                            {x: 0.2, y: 2.2}, {x: 20, y: 74},{x: 30, y: 63},
+                            {x: 40, y: 56}, {x: 50, y: 24}, {x: 60, y: 26},
+                            {x: 70, y: 19}, {x: 80, y: 42}, {x: 90, y: 88}
+                        ],
+                        data=[];
+                     
+                    var svg = d3.select("body").append("svg")
+                            .attr("class", "axis")
+                            .attr("width", width)
+                            .attr("height", height);
+                     
+                    // длина оси X= ширина контейнера svg - отступ слева и справа
+                    var xAxisLength = width - 2 * margin;     
+                      
+                    // длина оси Y = высота контейнера svg - отступ сверху и снизу
+                    var yAxisLength = height - 2 * margin;
+                        
+                    // функция интерполяции значений на ось Х  
+                    var scaleX = d3.scale.linear()
+                                .domain([0, 100])
+                                .range([0, xAxisLength]);
+                                 
+                    // функция интерполяции значений на ось Y
+                    var scaleY = d3.scale.linear()
+                                .domain([100, 0])
+                                .range([0, yAxisLength]);
+                     
+                    for(i=0; i<rawData.length; i++)
+                        data.push({x: scaleX(rawData[i].x)+margin, y: scaleY(rawData[i].y) + margin});
+                                 
+                    // создаем ось X   
+                    var xAxis = d3.svg.axis()
+                                 .scale(scaleX)
+                                 .orient("bottom");
+                    // создаем ось Y             
+                    var yAxis = d3.svg.axis()
+                                 .scale(scaleY)
+                                 .orient("left");
+                                  
+                    // отрисовка оси Х             
+                    svg.append("g")       
+                         .attr("class", "x-axis")
+                         .attr("transform",  // сдвиг оси вниз и вправо
+                             "translate(" + margin + "," + (height - margin) + ")")
+                        .call(xAxis);
+                     
+                    // отрисовка оси Y 
+                    svg.append("g")       
+                        .attr("class", "y-axis")
+                        .attr("transform", // сдвиг оси вниз и вправо на margin
+                                "translate(" + margin + "," + margin + ")")
+                        .call(yAxis);
+                     
+                    // создаем набор вертикальных линий для сетки   
+                    d3.selectAll("g.x-axis g.tick")
+                        .append("line") // добавляем линию
+                        .classed("grid-line", true) // добавляем класс
+                        .attr("x1", 0)
+                        .attr("y1", 0)
+                        .attr("x2", 0)
+                        .attr("y2", - (height - 2 * margin));
+                         
+                    // рисуем горизонтальные линии 
+                    d3.selectAll("g.y-axis g.tick")
+                        .append("line")
+                        .classed("grid-line", true)
+                        .attr("x1", 0)
+                        .attr("y1", 0)
+                        .attr("x2", yAxisLength)
+                        .attr("y2", 0);
+                    /* 
+                    // функция, создающая по массиву точек линии
+                    var line = d3.svg.line()
+                                .x(function(d){return d.x;})
+                                .y(function(d){return d.y;});
+                    */
+                    
+                    // Функция interpolate
+                    var line = d3.svg.line().interpolate("basis")
+                        .x(function(d){return d.x;})
+                        .y(function(d){return d.y;});
+                    
+                    var area = d3.svg.area().interpolate("basis")
+                        .x(function(d) { return d.x; })
+                        .y0(height - margin)
+                        .y1(function(d) { return d.y; });
+                    
+                    var g = svg.append("g");
+                    g.append("path")
+                        .attr("d", line(data))
+                        .style("stroke", "steelblue")
+                        .style("stroke-width", 2);
+                    
+                    // добавляем заголовок
+                    g.append("text")
+                        .attr("x", (width / 2))
+                        .attr("y", margin - 10 )
+                        .attr("text-anchor", "middle")
+                        .style("font-size", "22px")
+                        .text("График значений");
+                     
+                    g.append("text")
+                        .attr("x", margin + 28)
+                        .attr("y", margin - 11)
+                        .attr("text-anchor", "end")
+                        .style("font-size", "11px")
+                        .text("Ось Y(ММ)");
+                     
+                    g.append("text")
+                        .attr("x", width - margin + 11)
+                        .attr("y", height - margin - 5)
+                        .attr("text-anchor", "end")
+                        .style("font-size", "11px")
+                        .text("Ось Х(ММ)");
+                    </script>
+            </div>
+    </figure>
+</section>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smooth-scroll/smooth-scroll.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  
+  
+</body>
+</html>
