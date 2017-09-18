@@ -9,7 +9,7 @@ using namespace std;
 void fup (double x, double x_1, double x_2, double y_1, double y_2){//функция вычисления y
     double y;
     y=((x-x_1)*(y_2-y_1)/(x_2-x_1))+y1;
-    cout << "y>>> " << y << endl;
+    cout << " y>>> " << y << endl;
 }
 
 int main(){
